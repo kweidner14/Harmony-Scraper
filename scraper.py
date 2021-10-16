@@ -40,21 +40,11 @@ for r in row_data[2:]:
     harmony_daily_prices.append(round((open_price + close_price) / 2, 4))
     harmony_volumes.append(int(r.findChildren()[2].get_text().strip().replace("\n", "").replace("$", "").replace(",", "")))
 
-# with open('volumes.csv', 'w+', encoding='UTF8', newline='\n') as f:
-#     writer = csv.writer(f, delimiter=',')
-#     for v in harmony_volumes:
-#         f.write(str(v) + '\n')
-#
-# with open('prices.csv', 'w+', encoding='UTF8', newline='\n') as f2:
-#     writer2 = csv.writer(f, delimiter=',')
-#     for p in harmony_daily_prices:
-#         f2.write(str(p) + '\n')
-
 dataset = pd.DataFrame(
     {"Dates": dates,
-     "Open Price": open_prices,
-     "Close Price": close_prices,
-     "Daily Trade Volume": harmony_volumes
+     "Open Price ($)": open_prices,
+     "Close Price ($)": close_prices,
+     "Daily Trade Volume ($)": harmony_volumes
      }
 )
 dataset.to_csv('dataset.csv', encoding='UTF-8', index=False)
